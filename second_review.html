@@ -1,0 +1,675 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>The Song Search</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="abd59ae6-4ac4-471b-ba5d-01b4a0970692" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🎧</span></div><h1 class="page-title">The Song Search</h1></header><div class="page-body"><h1 id="4c11f7b3-c82f-4275-ae51-c1d22a8dc8fa" class=""><strong>Deep Learning -  CS 7150</strong></h1><p id="bb65d5d6-470b-4f48-baa6-178a1b653f65" class=""><strong>Prof. David Bau</strong></p><p id="46d1d1e0-3bbd-4aa9-8f5d-9c0c41968683" class="">September 29, 2022</p><h2 id="bfa4a85d-64f9-4ace-8247-7e113adb4d18" class=""><span style="border-bottom:0.05em solid"><strong>Team members</strong></span></h2><ol type="1" id="f3a5663b-a872-4b82-b9b7-1a38520cf1ca" class="numbered-list" start="1"><li>Praveen Kumar Sridhar (sridhar.p@northeastern.edu)</li></ol><ol type="1" id="ec133fb1-a773-4fd5-a373-57a73a54fa1b" class="numbered-list" start="2"><li>Isha Hemant Arora (arora.isha@northeastern.edu)</li></ol><p id="bca39ec6-e97e-4aa2-8b16-1546d2ae6cb6" class="">
+</p><p id="57350282-3cab-4ad1-b0d2-e1d7287b073d" class="">In this second review, we first focused on understanding how music can be parsed and transcribed as in the blogs on Google Magenta (focusing on piano, drum, and multi-instrument transcription). We also focused on reading through and understanding the auxiliary papers and blogs that we had outlined in our proposal. One of the major topics we focused on was understanding MIDI thoroughly (the audio was being transcribed in the format and we were extremely intrigued about it).</p><h2 id="6879267f-c7b8-497c-8fc5-2fceea715576" class=""><span style="border-bottom:0.05em solid">Conceptual Review</span></h2><p id="06a99f3c-a9d8-4dba-9715-bedbc1a4e0cb" class="">The papers that we are focusing on were written with the aim to achieve AMT (Automatic Music Transcription). AMT is valuable in not only helping with understanding but also enabling new forms of creation. The MT3 is the Multi-task Multitrack Music Transcription (Music Transcription with Transformers). As an overview we were able to see that while it is possible to separate different instruments and transcribe them separately, the architecture for different instruments would be different, thus making the process to implement different models per instrument long and tedious. More on this is explained in the next sections. The MT3 can process audio with multiple instruments and transcribe multiple different instruments to the MIDI standard. </p><h2 id="d46c53c2-bcc5-4f9c-a2e9-bb1ce9729100" class=""><span style="border-bottom:0.05em solid">Implementation</span></h2><p id="72092e95-abe7-4f1b-a9ac-74b86c40eb2e" class="">The implementation that we have focused on until now is the reproduction of the inference pipelines for all the models introduced on Google Magenta by the team, that focus on the transcription. This includes:</p><ol type="1" id="fba8cc6e-04a7-47ac-9de1-b31fb22f90cd" class="numbered-list" start="1"><li>Piano Transcription</li></ol><ol type="1" id="09eb18e8-45a9-4353-870c-579666e8bbab" class="numbered-list" start="2"><li>Drums Transcription</li></ol><ol type="1" id="f3779460-e811-4947-acce-3af774d7d6d5" class="numbered-list" start="3"><li>Multi-task Multitrack Music Transcription - MT3 (Multiple Instruments)</li></ol><p id="03b2cdc6-492b-4a24-85a0-c852909cf52a" class="">The models were created to transcribe .wav files.</p><h3 id="2ad0d5c9-b2fa-4cce-9722-d460c21cabf4" class="">Piano Transcription</h3><p id="cb195ca4-7411-4daa-800d-100d9cc127bd" class="">As outlined in the <strong><strong>Onsets and Frames: Dual-Objective Piano Transcription </strong></strong>paper, shown below is the architecture in use.<strong><strong> </strong></strong>This system does an excellent job of capturing harmony, melody, and even rhythms. Originally trained on the MAPS (MIDI Aligned Piano Sounds) dataset, the model was retrained on the MAESTRO (MIDI and Audio Edited for Synchronous TRacks and Organization) dataset.</p><p id="4354530a-c011-4064-ae63-8b20d775a0e4" class="">The reason why the system works so well is because of the dual objectives set on the architecture to learn. The dual objectives are learned on each stack:<div class="indented"><ul id="e692cc77-cac6-455f-a60b-2e63bfaea0ba" class="bulleted-list"><li style="list-style-type:disc">Frame Prediction: Trained to detect every frame where a note is active.</li></ul><ul id="a3246c40-17c4-4714-94f3-02f75face46f" class="bulleted-list"><li style="list-style-type:disc">Onset Prediction: Trained to detect only onset frames (the first few frames of every note)</li></ul></div></p><figure id="35b8a365-2434-49ee-959f-146e7d82485e" class="image"><a href="second_review_artifacts/Untitled.png"><img style="width:355px" src="second_review_artifacts/Untitled.png"/></a></figure><h3 id="08ea5ee1-6719-4820-8f3d-e1e15dd37132" class="">Drum Transcription</h3><p id="fb111b2d-a951-46d1-9ebe-c75c15e028fe" class="">Taking inspiration and extending from the piano transcription, the model for drum transcription was designed. A major difference noticed when working with the dataset that was found was the need to consider velocity as a parameter to capture groove (the dataset was trained using a fixed velocity and the results were less than satisfactory). It was noticed that fixed velocity models would lose quite a bit of performance and evocative aspects of music. The model was trained on the E-GMD (Expanded Groove MIDI Dataset) dataset.</p><p id="302fa367-32dd-4e1f-913c-97606f0d7014" class="">Similar to the piano transcription, the drum transcription too has dual objectives set on the architecture to learn. Since drum hits do not sustain like piano notes, frame predictions are unnecessary and not required.</p><p id="d4f7f661-36c1-40b8-90e7-793e6171c5a8" class="">
+</p><figure id="bf0a9b17-63cd-4cc4-abf4-11ef0c91453d" class="image"><a href="second_review_artifacts/Untitled%201.png"><img style="width:418px" src="second_review_artifacts/Untitled%201.png"/></a></figure><p id="c46e5948-e95a-40a6-97f9-be426ea75427" class="">
+</p><h3 id="40fef82a-a79c-450e-8496-20b436384bd6" class="">Multi-task Multitrack Music Transcription (MT3)</h3><p id="00db5c76-9c3d-43f2-a65f-9acea4da219e" class="">It uses off-the-shelf transformers, as they work well if not better than custom neural networks as we had seen for Piano/Drums. They are modeled to take spectrograms as input and output a sequence of MIDI-like note events. </p><p id="d70722a9-ea7c-4b43-89d3-1c4303240b04" class="">Why Transformers?</p><p id="7f5c82dd-8e40-4674-aa92-8d4941ffbc3a" class="">The reasoning as provided by the authors is that transformer architecture has shown remarkable performance on a diverse set of tasks within both language and vision, which we agree with. </p><p id="e030ed54-4131-4938-9c95-044a684b4aa5" class="">To test the validity of this statement, the authors first modeled piano transcription using a transformer instead of using the specialized architecture, as explained above. They modeled it as a sequence-to-sequence task, using the Transformer architecture from T5. They observed better results and higher F1 scores. Further, to retrain this architecture for newer instruments, we would only need to change the vocabulary of the output. </p><p id="9fb16a43-bb7d-4ec4-97cf-3cdabc1a2880" class="">For multiple instruments, it is like needing to add new words to the output vocabulary. Thus, using the architecture as is.</p><p id="06f9fb34-ec26-40fd-9a6f-bc17133e2b66" class="">Six datasets were used for the model, namely; MAESTROv3 (MIDI and Audio Edited for Synchronous TRacks and Organization), Slakh2100 (Synthesized Lakh), Cerberus4, GuitarSet, MusicNet, and URMP (University of Rochester Multi-Modal Music Performance).</p><p id="e0c3fcea-96a4-4cd6-9a10-970cb5b82db7" class="">A generic form of the MT3 model can be seen below:</p><figure id="b81b83e5-c5e8-47ee-ac66-9c0b6f30aebc" class="image"><a href="second_review_artifacts/Untitled%202.png"><img style="width:1187px" src="second_review_artifacts/Untitled%202.png"/></a></figure><h2 id="efec75b4-0365-4abd-8eec-ffb2790536b4" class=""><span style="border-bottom:0.05em solid">Findings</span></h2><h3 id="e7dc2505-6649-458a-9c74-f42fc68f3924" class="">Piano Transcription</h3><p id="b159494e-4ca0-4406-87f7-11c0dfab5312" class="">On transcribing a piano audio file (as added below), a pitch-against-time visualization was created.</p><figure id="4a9cab5c-6e5c-4f24-a577-709aaa48f938"><div class="source"><a href="second_review_artifacts/Piano.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/af6f751b-8190-4a1f-9c95-ad8adf50ee36/Piano.wav</a></div></figure><figure id="bc4dd916-2a0f-45b5-9c7d-b89adfb817c2" class="image"><a href="second_review_artifacts/piano_bokeh_plot.png"><img style="width:750px" src="second_review_artifacts/piano_bokeh_plot.png"/></a></figure><p id="270b8242-28f6-488a-a361-9cf6d39730cc" class="">As mentioned in the <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Implementation</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>, the piano transcription model was created around two stacks.</p><p id="f9fd7394-84dc-4a54-a189-16c65308edd0" class="">Using the stacks for inference: </p><ul id="5934823a-510d-4cd6-8096-7139a0cfb36e" class="bulleted-list"><li style="list-style-type:disc">The raw output of the onset detector is fed into the frame detector as an additional input</li></ul><ul id="87def4bd-e8de-4034-8cf5-6bc71f979e34" class="bulleted-list"><li style="list-style-type:disc">The final output of the model is restricted to starting new notes only when the onset detector is confident that a note onset is in that frame.</li></ul><p id="3004fd61-6af3-4c47-825e-a338344f60cb" class="">Finally, the loss function used is the sum of two cross-entropy losses: one from the onset side and one from the frame side.</p><h3 id="0050ca6c-ce5b-43b7-91ea-d1b546b94b69" class="">Drum Transcription</h3><p id="84772ee8-b611-4b42-b68d-a07ac128b7bb" class="">On transcribing a drum audio file (as added below), a pitch against time visualization was created.</p><figure id="a42c90ec-44a4-45fb-85dc-8a1cb8379a1c"><div class="source"><a href="second_review_artifacts/Drums.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/48f32dae-eeb0-40a8-acfc-692b28cefe46/Drums.wav</a></div></figure><figure id="f1077fdc-bc45-4303-89ed-3452a5b66841" class="image"><a href="second_review_artifacts/drums_bokeh_plot.png"><img style="width:750px" src="second_review_artifacts/drums_bokeh_plot.png"/></a></figure><p id="8a76642e-3ed1-4a7b-be80-9789ed5fe19d" class="">We experimented with piano and drums transcription using the customized networks as suggested in the papers and observed the output (pitch vs time and transcription) on manually created audio files using the GarageBand software. </p><p id="75d1df9c-bc7f-493c-a750-482a1bac7e46" class="">With this, we were able to see how these models are transcribing the audio it receives as input. The way these models transcribe audio is by converting them to MIDI format. </p><p id="7b460228-0106-436f-b999-5cb8f039cfd9" class="">MIDI can be assumed to be a standardized language for music. On further exploration, we learned about <a href="https://fmslogo.sourceforge.io/manual/midi-instrument.html">instrument numbers</a> which we realized was essential in understanding and interpreting the results of the models.</p><h3 id="3ce92629-81ba-46ee-b7ee-bf648e8f0500" class="">Multi-task Multitrack Music Transcription (MT3)</h3><figure id="f6627003-01de-4f5a-913d-a8bb5fa8cd9f"><div class="source"><a href="second_review_artifacts/Multiple_Instruments.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bf184f29-58c4-42b6-89b7-2ba4e0a593c6/Multiple_Instruments.wav</a></div></figure><p id="577ae1a7-812d-4d6b-91a0-b76d1545bdff" class=""><div class="indented"><figure id="0557af4f-744f-4184-a067-a686fa9bd0dd" class="image"><a href="second_review_artifacts/multi_bokeh_plot.png"><img style="width:750px" src="second_review_artifacts/multi_bokeh_plot.png"/></a></figure><p id="2876ea61-24ee-4c15-bec2-90c595ed612c" class="">
+</p><p id="882869b6-b664-4a59-8836-0af88f87b936" class="">On creating a snippet of an audio file with multiple instruments (again on GarageBand), we were able to create a similar pitch against time visualization, this time for all the instruments in the audio file.</p><p id="963ec1ba-dae3-463e-b0c9-02bce9c92d44" class="">The following is an image of the transcribed data in text format. </p><figure id="861e07c2-c3d8-421a-808f-4e4a83dc3f2d" class="image" style="text-align:center"><a href="second_review_artifacts/Untitled%203.png"><img style="width:245px" src="second_review_artifacts/Untitled%203.png"/></a></figure><p id="9589e177-eec7-463e-8405-fbe54da064e5" class="">Wanting to experiment further, we wanted to see how the model would process audio with vocals (MIDI instrument numbers do not consider vocals). </p><p id="d0347756-e6f4-486a-8ee7-0854b3d7c08e" class="">To do this we passed a snippet of Ed Sheeran’s ‘I See Fire’. We were quite surprised to see how the vocals were encoded by the architecture. </p><figure id="86fd2f6e-98d3-4cd2-86c2-4e23dc54583f"><div class="source"><a href="second_review_artifacts/Ed-Sheeran-I-See-Fire.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/821591be-4d9b-42e0-8c21-109c0e881d12/Ed-Sheeran-I-See-Fire.wav</a></div></figure><figure id="026952c6-978b-472b-b924-d28af71a16a4" class="image"><a href="second_review_artifacts/ed-sheeran-transcription.png"><img style="width:625px" src="second_review_artifacts/ed-sheeran-transcription.png"/></a></figure><p id="b700de3a-e9c2-49a5-b163-9050f9228f7d" class="">To gain further clarity, we tried passing a pure audio clip of us speaking (no background instruments included). We noticed that the transcription and the MIDI audio were classed as that of a piano.</p><figure id="a1cb9ce6-a980-4f1c-b358-fdce357872af"><div class="source"><a href="second_review_artifacts/Pure_Vocal.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/71c692e3-97bc-4a65-b857-47d9c9ec3dd9/Pure_Vocal.wav</a></div></figure><figure id="a84da83a-9d45-439f-871b-0e0690f3692a" class="image"><a href="second_review_artifacts/pure-vocal-transcription.png"><img style="width:625px" src="second_review_artifacts/pure-vocal-transcription.png"/></a></figure><p id="3f30a07a-cd7b-4964-95e4-b180a0a991a1" class="">While a pretty good model, as outlined by the authors, we were also able to see the limitations of the architecture (and probably a suggestion for future work). The network does not consider velocity (as was considered in the focused Drum Transcription model) as all datasets (MT3 considers six) record velocity differently. It was also noted that the MusicNt dataset had some alignment errors and no attempts were made to correct them.</p></div></p><h2 id="6fdfdf8a-ee59-4a72-8e03-448491db0a89" class=""><span style="border-bottom:0.05em solid">Plans</span></h2><p id="23353cac-1b07-4bcc-b095-3115cec1b6a3" class="">Our original plan was to be able to create vector and string representations of the music as a major chunk of our project and then perform information retrieval tasks using these representations. For this, we were hoping to be able to work with complete songs, that included, both instruments and vocals. Now that we have analyzed the architecture we were hoping to use a little more closely and familiarized ourselves with the intricacies of the audio transcription and the MIDI format, we realize that being able to parse songs with vocals will be difficult. As such, we intend to redirect our project idea to simply consider instrumental files and create vector representations for those. </p><p id="32261b21-a669-4c49-aba2-c4c6a5045991" class="">We also hope to speak to Professor Bau in regards to being able to find the best way to create these vector representations.</p><h2 id="c11b6881-82bf-41f4-86ab-6dae830c1e8e" class="">Links:</h2><ol type="1" id="bd666f87-ec71-4c04-b585-1bad9cbc35af" class="numbered-list" start="1"><li><a href="https://github.com/magenta/mt3">https://github.com/magenta/mt3</a></li></ol><ol type="1" id="7f7e9e3e-b0ba-4804-bc88-bcc4993ddc3f" class="numbered-list" start="2"><li><a href="https://archives.ismir.net/ismir2021/paper/000030.pdf">Hawthorne, Curtis, et al. &quot;Sequence-to-sequence piano transcription with Transformers.&quot; </a><a href="https://archives.ismir.net/ismir2021/paper/000030.pdf"><em>arXiv preprint arXiv:2107.09142</em></a><a href="https://archives.ismir.net/ismir2021/paper/000030.pdf"> (2021).</a></li></ol><ol type="1" id="2db11706-5b36-47f4-a60a-b2a3947efc57" class="numbered-list" start="3"><li><a href="https://arxiv.org/pdf/2004.00188.pdf">Callender, Lee, Curtis Hawthorne, and Jesse Engel. &quot;Improving perceptual quality of drum transcription with the expanded groove midi dataset.&quot; </a><a href="https://arxiv.org/pdf/2004.00188.pdf"><em>arXiv preprint arXiv:2004.00188</em></a><a href="https://arxiv.org/pdf/2004.00188.pdf">
+ (2020).</a></li></ol><ol type="1" id="1e0c83b8-3f70-40b6-a934-6b9771a72b0b" class="numbered-list" start="4"><li><a href="https://arxiv.org/pdf/2111.03017.pdf">Gardner, Josh, et al. &quot;Mt3: Multi-task multitrack music transcription.&quot; </a><a href="https://arxiv.org/pdf/2111.03017.pdf"><em>arXiv preprint arXiv:2111.03017</em></a><a href="https://arxiv.org/pdf/2111.03017.pdf"> (2021).</a></li></ol><ol type="1" id="476a5369-95e4-4660-acd3-ab5ae328a8c9" class="numbered-list" start="5"><li><a href="https://fmslogo.sourceforge.io/manual/midi-instrument.html">https://fmslogo.sourceforge.io/manual/midi-instrument.html</a></li></ol><ol type="1" id="2920c189-5e65-4b09-b21c-dafc24e1bc7d" class="numbered-list" start="6"><li><a href="https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html">https://ai.googleblog.com/2020/02/exploring-transfer-learning-with-t5.html</a></li></ol><p id="1370cff7-990b-49a1-9731-7210b92f9116" class="">
+</p></div></article></body></html>

@@ -1,0 +1,698 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>The Song Search - DL</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="765d94dc-1b42-4385-ba8a-e01c9c0e4440" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb" style="object-position:center 59.099999999999994%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🎧</span></div><h1 class="page-title">The Song Search - DL</h1></header><div class="page-body"><h2 id="aa328f47-61d7-4997-b52e-2a1139a20161" class=""><strong>Team members</strong></h2><ol type="1" id="794d9287-0312-479e-9d62-9a3322a69833" class="numbered-list" start="1"><li>Isha Hemant Arora (arora.isha@northeastern.edu)</li></ol><ol type="1" id="3c744c4f-a869-4ce0-b5a7-a1da879dc21e" class="numbered-list" start="2"><li>Praveen Kumar Sridhar (sridhar.p@northeastern.edu)</li></ol><h2 id="81c41be5-ba0b-4c88-8b39-4651f232e2c1" class="">Introduction</h2><p id="ae765487-d5c0-45cb-9bfb-02321938286e" class="">Taking inspiration from Shazam, we hope to create a project that would be replicate the inner workings of Shazam and perform a retrieval task on musical data. The core of this IR system comes from finding efficient representations for songs and performing a retrieval task with the said representations. While trying to figure out our plan, we came across the fantastic resource Tensorflow Magenta and were intrigued by music transcription models so we decided to explore and experiment with a couple of these models.</p><h2 id="27da4aa1-b6cc-4a57-b775-aa10badc5a6c" class="">Related Work</h2><p id="9a5c27bd-b8ff-4050-97a9-db52f68a45af" class="">The papers that we are focusing on were written with the aim to achieve AMT (Automatic Music Transcription). AMT is valuable in not only helping with understanding but also enabling new forms of creation. The MT3 is the Multi-task Multitrack Music Transcription (Music Transcription with Transformers). As an overview we were able to see that while it is possible to separate different instruments and transcribe them separately, the architecture for different instruments would be different, thus making the process to implement different models per instrument long and tedious. More on this is explained in the next sections. The MT3 can process audio with multiple instruments and transcribe multiple different instruments to the MIDI standard. </p><p id="b93f5f4b-561c-42d7-a1b5-0662e932b40b" class="">We also tried understanding the model developed by Shazam and trying to relate it to the method we were trying to implement (the one where we process and transcribe audio data).</p><h3 id="9131ad28-0e2e-4796-97e1-84e8c3f8b998" class="">Onsets and Frames</h3><p id="05cb6d09-0fd3-46ca-ad69-2d22bc1cb39f" class="">The dual objectives are learned on each stack:</p><ul id="ff8b78bf-7eb2-4b2c-9474-f70a36256b8e" class="bulleted-list"><li style="list-style-type:disc">Frame Prediction: Trained to detect every frame where a note is active.</li></ul><ul id="e2425909-687b-46f0-a798-6203f6f6e07e" class="bulleted-list"><li style="list-style-type:disc">Onset Prediction: Trained to detect only onset frames (the first few frames of every note)</li></ul><p id="655390ee-f52f-4488-80c3-db83673f703d" class="">Each instrument needs a new architecture, but it is tedious to build a custom arch for each instrument.</p><p id="63aab887-fb86-4c08-acb5-41749d4fcbc0" class="">Thus, the MT3 model was created.</p><h3 id="b6d870a8-492e-4e9d-b79c-1ff14a5823b1" class="">MT3 (Multi-Task Multi-track Music Transcription)</h3><p id="88f0172d-c1eb-4c14-870c-3edd8c6f25fd" class="">It uses off-the-shelf transformers, as they work well if not better than custom neural networks as we had seen for Piano/Drums. They are modeled to take spectrograms as input and output a sequence of MIDI-like note events. It was modeled as a sequence-to-sequence task, using the Transformer architecture from T5. The major benefit of this model was if needed to retrain this architecture for newer instruments, we would only need to change the vocabulary of the output.</p><figure id="6048a2b3-f941-47ef-8120-53a8ecbc21aa" class="image"><a href="assets/unnamed.png"><img style="width:1187px" src="assets/unnamed.png"/></a></figure><p id="aafcdc24-3abb-40e3-862f-e2f381055e65" class="">
+</p><h3 id="749ddac7-e05a-4e74-a2ce-c806551399fe" class="">MIDI</h3><p id="11ad19cc-82fd-40dd-8ff9-2b41af3cf26e" class="">MIDI is a communication standard that allows digital music gear to speak the same language. MIDI is short for Musical Instrument Digital Interface. It’s a protocol that allows computers, musical instruments, and other hardware to communicate.</p><h2 id="bbd5026d-e3f7-4954-b477-9201d811c0bc" class="">Methods</h2><p id="d7fc46a4-92fa-465e-80b7-76f5ef7fd527" class="">To start off, we started with trying to understand and reproduce the models for Piano and Drum Transcription (Onsets and Frames) and then the models of Multi-instrument transcription (MT3). This is where we actually hit a snag, we weren’t very familiar with audio data and MIDI transcriptions and the original idea of trying to use string implementations over lyrical music and using it for matching audio clips had to be reformed.</p><p id="6ba22ac1-7fc6-4999-822b-2a43de03f980" class="">We restructured our idea to work solely with instrumental data, all after trying to understand how the models parsed lyrical data (it was parsed as an instrument, generally the piano), with a pitch similar to the data.</p><p id="fbcc2e26-d107-4906-a661-5b2616516ae6" class="">Working with instrumental data, we decided that we could try and retrieve the vector representation of each song in our dataset and try using these representations to match with query vectors.</p><p id="4ed7d77c-d74d-4889-bc23-b569505c557a" class="">We decided to use the <a href="https://www.kaggle.com/datasets/andradaolteanu/gtzan-dataset-music-genre-classification">GTZAN dataset</a> as available on Kaggle. The dataset consists of 10 genres of music, each genre having 100 instrumental audio clips, each being 30 seconds long. All files were originally in the .wav format, a format around which the model was created.</p><p id="1bdce058-ef88-426b-8df7-8e666a482945" class="">After transcription, we stored the data as such: </p><pre id="ca8ee50b-2b43-4f52-86f2-56ed659ea704" class="code"><code>{
+  &quot;audio_file_path&quot;: &quot;sample1.wav&quot;,
+  &quot;date_added&quot;: &quot;11/23/2022&quot;,
+  &quot;meta_data&quot;: {
+    &quot;artist&quot;: &quot;Bach&quot;,
+    &quot;duration&quot;: &quot;00:00:30&quot;,
+    &quot;genre&quot;: &quot;classical&quot;,
+    &quot;transcribed_json_path&quot;: &quot;transcribed_sample1.json&quot;
+  }
+}</code></pre><p id="5fe98674-0f0c-48bd-a007-4588727a418f" class="">For each song, the format of transcribed JSON would be similar to (as created after transcription):</p><pre id="c1d5773d-7d45-4014-95f7-c8449e7673ac" class="code"><code>notes {
+	&quot;pitch&quot; : &quot;40&quot;,
+	&quot;velocity&quot; : &quot;127&quot;,
+	&quot;start_time&quot; : &quot;3.33&quot;,
+	&quot;end_time&quot; : &quot;3.45&quot;,
+	&quot;instrument&quot; : &quot;2&quot;,
+	&quot;program&quot; : &quot;42&quot;
+}
+notes {
+	&quot;pitch&quot; : &quot;29&quot;,
+	&quot;velocity&quot; : &quot;127&quot;,
+	&quot;start_time&quot; : &quot;3.45&quot;,
+	&quot;end_time&quot; : &quot;3.56&quot;,
+	&quot;instrument&quot; : &quot;2&quot;,
+	&quot;program&quot; : &quot;42&quot;
+}</code></pre><p id="597528ab-da6b-41c3-b2a1-5b47b07ba7a1" class="">
+</p><p id="fe25ed35-d8e1-4a23-a9c6-c0459951a9c0" class="">A 10-second audio file was introduced as the query. The file, also expected to be a .wav file was parsed and transcribed into a similar JSON format. A string matching algorithm was introduced with the idea of trying to find which data point in our dataset matches best with the query.</p><h3 id="369afa70-7b1f-47c4-b726-d424055fea60" class="">Architecture Diagram</h3><p id="57a22aa2-ae0f-4453-85eb-8aa74e7bf8e0" class="">For curating and transcribing the Dataset</p><figure id="36ef027b-ee5a-480e-ba70-421a1ea9bd6b" class="image"><a href="assets/unnamed_(1).png"><img style="width:1001px" src="assets/unnamed_(1).png"/></a></figure><p id="4463fb75-2f87-4727-b4e9-98bef1a6df74" class="">
+</p><p id="37d75d59-d811-40b8-b6d3-f51c636ba5af" class="">For transcribing and matching the Query</p><figure id="f13e0113-4df3-4bad-978a-247a9c3aca32" class="image"><a href="assets/unnamed_(2).png"><img style="width:960px" src="assets/unnamed_(2).png"/></a></figure><p id="24c7f2d7-cead-4681-a2c3-298607e17c8f" class="">We saved the dataset and query log for our project on our local MongoDB:</p><figure id="83f84926-2abb-4d19-ba17-98b75eb14fae" class="image"><a href="assets/WhatsApp_Image_2022-12-11_at_20.14.32.jpg"><img style="width:1280px" src="assets/WhatsApp_Image_2022-12-11_at_20.14.32.jpg"/></a></figure><figure id="63544416-a5ea-482e-92b1-c1469ba42085" class="image"><a href="assets/WhatsApp_Image_2022-12-11_at_20.14.51.jpg"><img style="width:1280px" src="assets/WhatsApp_Image_2022-12-11_at_20.14.51.jpg"/></a></figure><h2 id="0e1b6e9f-dadd-427a-bf52-4c0207efb708" class="">Experiments</h2><p id="59697d17-ecd4-4b28-84c1-0ca035fbd13a" class="">To begin with, we first tried to understand the models for Onsets and Frames and MT3 and the MIDI transcription.</p><h3 id="f6cb0aaa-a9a7-4c22-a214-36907fa80f53" class="">Piano Transcription</h3><p id="bb2a3194-b2d1-4e4e-a0c7-9c1d5268d380" class="">On transcribing a piano audio file (as added below), a pitch-against-time visualization was created.</p><figure id="198c3092-5e39-4897-afe7-d20dfb07165d"><div class="source"><a href="assets/Piano.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/af6f751b-8190-4a1f-9c95-ad8adf50ee36/Piano.wav</a></div></figure><figure id="928242ef-8222-40da-ac57-8c9cbc0c8c72" class="image"><a href="assets/piano_bokeh_plot.png"><img style="width:750px" src="assets/piano_bokeh_plot.png"/></a></figure><p id="28271e76-9087-4064-92b6-0ba3fdad22f6" class="">The piano transcription model was created around two stacks.</p><p id="4e922a76-318d-4d36-b859-907df758f83b" class="">Using the stacks for inference: </p><ul id="670c9949-a1ad-4595-947d-c57ecf00a10b" class="bulleted-list"><li style="list-style-type:disc">The raw output of the onset detector is fed into the frame detector as an additional input</li></ul><ul id="c9666b56-6214-4538-bac8-dca1956ef432" class="bulleted-list"><li style="list-style-type:disc">The final output of the model is restricted to starting new notes only when the onset detector is confident that a note onset is in that frame.</li></ul><p id="2e3e2994-8a7b-4054-8ea7-d1b594baf731" class="">Finally, the loss function used is the sum of two cross-entropy losses: one from the onset side and one from the frame side.</p><h3 id="f14e6da3-4bfc-4875-95c7-9c72862dbd03" class="">Drum Transcription</h3><p id="b5eec99f-c7ab-45b5-a317-f280f42123d5" class="">On transcribing a drum audio file (as added below), a pitch against time visualization was created.</p><figure id="928155e9-43fa-477d-9b27-5430bde299f6"><div class="source"><a href="assets/Drums.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/48f32dae-eeb0-40a8-acfc-692b28cefe46/Drums.wav</a></div></figure><figure id="a84dc01e-8338-43b3-8e79-0cb0cf4dc007" class="image"><a href="assets/drums_bokeh_plot.png"><img style="width:750px" src="assets/drums_bokeh_plot.png"/></a></figure><p id="d9a940a1-9163-4c00-8ad5-9b73e6f52a68" class="">We experimented with piano and drums transcription using the customized networks as suggested in the papers and observed the output (pitch vs time and transcription) on manually created audio files using the GarageBand software. </p><p id="f61a0d49-897f-47d0-9995-737746928542" class="">With this, we were able to see how these models are transcribing the audio it receives as input. The way these models transcribe audio is by converting them to MIDI format. </p><p id="a58a56a3-8af6-4ad5-816e-eeb5778a19b6" class="">MIDI can be assumed to be a standardized language for music. On further exploration, we learned about <a href="https://fmslogo.sourceforge.io/manual/midi-instrument.html">instrument numbers</a> which we realized was essential in understanding and interpreting the results of the models.</p><h3 id="6dd38817-6472-40eb-bf3f-584ad1f81073" class="">Multi-task Multitrack Music Transcription (MT3)</h3><figure id="02d56836-6d90-44a7-8b6c-37e7d6cc4a5e"><div class="source"><a href="assets/Multiple_Instruments.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bf184f29-58c4-42b6-89b7-2ba4e0a593c6/Multiple_Instruments.wav</a></div></figure><figure id="c5a24826-fa8b-499e-b686-2f1da8a658d3" class="image"><a href="assets/multi_bokeh_plot.png"><img style="width:750px" src="assets/multi_bokeh_plot.png"/></a></figure><p id="2dfc22ab-9c14-4825-99ed-40f425018b9a" class="">On creating a snippet of an audio file with multiple instruments (again on GarageBand), we were able to create a similar pitch against time visualization, this time for all the instruments in the audio file.</p><p id="5d4612d2-485b-4f5e-841b-0eb084834917" class="">Wanting to experiment further, we wanted to see how the model would process audio with vocals (MIDI instrument numbers do not consider vocals). </p><p id="b1fc9a75-8ee7-4961-af1b-a9e200a5821b" class="">To do this we passed a snippet of Ed Sheeran’s ‘I See Fire’. We were quite surprised to see how the vocals were encoded by the architecture. </p><figure id="97a4c7f2-81aa-4b6c-a8c4-18d03add600b"><div class="source"><a href="assets/Ed-Sheeran-I-See-Fire.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/821591be-4d9b-42e0-8c21-109c0e881d12/Ed-Sheeran-I-See-Fire.wav</a></div></figure><figure id="4beede65-18a7-4a95-babd-0019ac9bb7c4" class="image"><a href="assets/ed-sheeran-transcription.png"><img style="width:625px" src="assets/ed-sheeran-transcription.png"/></a></figure><p id="b9c4c60a-4a40-4c23-a5f8-de0848317f12" class="">To gain further clarity, we tried passing a pure audio clip of us speaking (no background instruments included). We noticed that the transcription and the MIDI audio were classed as that of a piano.</p><figure id="a9998a56-01dc-45b5-a542-04d214b54aa2"><div class="source"><a href="assets/Pure_Vocal.wav">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/71c692e3-97bc-4a65-b857-47d9c9ec3dd9/Pure_Vocal.wav</a></div></figure><figure id="9349e0d0-855e-4ed7-bc35-7b89bf1bcdd0" class="image"><a href="assets/pure-vocal-transcription.png"><img style="width:625px" src="assets/pure-vocal-transcription.png"/></a></figure><p id="357a7ce6-eb47-4d47-8f5f-733a853d9e2a" class="">While a pretty good model, as outlined by the authors, we were also able to see the limitations of the architecture (and probably a suggestion for future work). The network does not consider velocity (as was considered in the focused Drum Transcription model) as all datasets (MT3 considers six) record velocity differently. It was also noted that the MusicNet dataset had some alignment errors and no attempts were made to correct them.</p><h3 id="63c14853-41f3-459f-8892-d6d5bf3bf34d" class="">Genre Classification</h3><p id="b92223f1-601f-4d8f-a1a4-03a3341bee5b" class="">The original idea was to pull vectors for each audio transcribed in the dataset and then match it to the query vectors and thus we tried implementing it. Since we were struggling with the same (the model was a little too complex for us), we then decided on trying to create a genre classifier, which we believed would give us vectors too, ones that we could try to match with the query vectors that would be created using this genre classifier.</p><p id="b21b5f28-9f82-4599-9355-0c446d906ea5" class="">Yet, when we created the genre classifier, we realized that the data that we were working with (1000 audio clips, 30 seconds each) was extremely small for us to be able to train a proper model (we tried multiple models; all the way from simple ANNs to LSTMs). Thus, the genre classifier itself was not well-trained and the vectors, irrespective of the genre, were very similar. Thus, query vectors when created, almost all had a cosine similarity of over 0.85 and best matches at the first position were not always true.</p><h3 id="9d352d4b-9265-4a8d-96a6-ec6a0dfcd394" class="">Vector Creation</h3><p id="acef3d6b-c673-4f31-8180-7f0e1a9c858d" class="">Since our idea of using a genre classifier was not exactly successful, we tried yet another approach. Since we had converted our audio files into Mel Spectrograms, we got the matrix representations of that and then flatten them - that gave us vectors that we were able to use for matching with query vectors (which were also created using the Mel Spectrogram representations).</p><h3 id="63e0b437-6bc7-4915-bdf7-41442b7b2bd3" class="">Piano Matching (Single instrument) v/s GTZAN clips (Multi-instrument)</h3><p id="1d0d40d8-63c8-4a5a-9f02-8589e9b4baf5" class="">As a part of the string matching with JSON, we considered two cases:</p><ol type="1" id="f6a02549-cd35-4193-b840-d93d5b19b634" class="numbered-list" start="1"><li>Single Instrument (Piano files)<p id="3905a5bb-4457-41d4-88bb-25b944d142b6" class="">The first thing we saw was that the JSON created did not include the instrument (even though MIDI does have multiple types of instruments for a single style, so we were expecting to see its existence in the JSON). When we first created the matching algorithm, we created it using these clips as a reference and we were able to get an accuracy that was above 90% for the first song retrieved being the best match. This matching algorithm was created keeping the idea of Rabin-Karp in mind.</p></li></ol><ol type="1" id="59adfa9e-4269-4c50-8972-991403f2cb15" class="numbered-list" start="2"><li>Multiple Instruments (GTZAN dataset)<p id="7c7dc6cc-96ca-4f51-8295-d97299ae50d5" class="">This dataset, when we first transcribed it into the JSON format, did have the instrument data. Testing the matching algorithm on this dataset, we noticed that there were a lot of issues and that the matching algorithm was not performing as well as we had hoped. To improve on it, we made a few more changes to the matching.</p></li></ol><h2 id="f02e474b-3c83-4105-ade8-1d184dad5359" class="">Results</h2><p id="566432bb-6977-43ce-9626-c4a5b71c821d" class="">When testing the MT3 model, we observed that:</p><ul id="dd550534-3700-4798-811a-8a7be16ce01c" class="bulleted-list"><li style="list-style-type:disc">MT3 has an average frame F1 score of 0.85 across different datasets</li></ul><ul id="4e59e9f9-d1b2-47c6-adfc-2a943d53a7b8" class="bulleted-list"><li style="list-style-type:disc">MT3 has an average onset F1 score of 0.8 across different datasets</li></ul><p id="d7e489c6-5ff4-4c81-8a8c-b5a068ae86ac" class="">When implementing the string-based matching algorithm on the JSON files created using:</p><ol type="1" id="3e942992-521b-4e2b-8204-beae09b0a0fd" class="numbered-list" start="1"><li>Single Instrument<figure id="a3c2223c-acce-4a56-a5a8-608b85a79a1c" class="image"><a href="assets/WhatsApp_Image_2022-11-29_at_2.03.56_AM.jpeg"><img style="width:1019px" src="assets/WhatsApp_Image_2022-11-29_at_2.03.56_AM.jpeg"/></a></figure><figure id="96718b11-b36b-4fea-a525-27e32936abed" class="image"><a href="assets/WhatsApp_Image_2022-11-29_at_2.03.56_AM_(1).jpeg"><img style="width:1090px" src="assets/WhatsApp_Image_2022-11-29_at_2.03.56_AM_(1).jpeg"/></a></figure></li></ol><ol type="1" id="909b4049-a865-4dc9-b436-c509149a1020" class="numbered-list" start="2"><li>Multiple Instruments<p id="aabaa625-16a6-488a-9ec4-905cc3dea85f" class="">The IR system with the MT3 model has an overall accuracy of 74% in the top 5 candidate set and a MAP of 0.68</p><figure id="fd1716c1-b119-4796-8fa0-9b8e2bcf2069" class="image"><a href="assets/unnamed_(3).png"><img style="width:1600px" src="assets/unnamed_(3).png"/></a></figure><p id="bbc8ac68-271c-41a2-8713-9776e193ea22" class="">Using the vector representations from the Mel Spectrograms had an overall accuracy of 51% in the top 5 candidate set.</p><figure id="b7753f2c-0ec0-40c5-86a6-0c8ed82b7f30" class="image"><a href="assets/WhatsApp_Image_2022-12-11_at_20.17.04.jpg"><img style="width:1280px" src="assets/WhatsApp_Image_2022-12-11_at_20.17.04.jpg"/></a></figure></li></ol><h2 id="edac4007-6072-4227-bda4-b908714b19c8" class="">Evaluation</h2><p id="6232b219-f1f6-44b3-9e47-277003f22789" class="">We used the metrics for accuracy and MAP to test the Information Retrieval system that we had created.</p><p id="43350875-f445-4fa4-bfd6-6371d808e356" class="">Accuracy: It is an extremely intuitive performance measure. Simply, it is a ratio of correctly predicted observations to the total observations.</p><p id="9b5d6fa9-d4ce-4539-96af-917d6d35d70c" class="">MAP (Mean Average Precision): The general definition for the Average Precision (AP) is finding the area under the precision-recall curve. MAP is the average of the Average Precision (AP).</p><h2 id="b76a60e8-c7c2-4d86-acef-eff1dd14dd0f" class="">Contributions and Future Work</h2><p id="65e09d5b-d447-44ee-aebd-00ae503a8fa2" class="">We realize that the project did not include songs that contained lyrics as we were unable to parse and transcribe them in a way that was particularly useful. As a future extension, we hope to be able to extend this project of matching songs to include songs with lyrics.</p><h2 id="4047b095-1824-45cf-b837-b210df406624" class="">References</h2><ol type="1" id="faa2198e-bc8e-4b20-a52a-1034addf2c72" class="numbered-list" start="1"><li><strong>Main Paper/Blog</strong><ul id="2c66a46a-3f92-48bb-9de8-cc6a1a644572" class="bulleted-list"><li style="list-style-type:disc">Links:<ul id="149adda6-6496-47ed-8d56-e7ee873faeca" class="bulleted-list"><li style="list-style-type:circle"><a href="https://archives.ismir.net/ismir2021/paper/000030.pdf">Hawthorne, Curtis, et al. &quot;Sequence-to-sequence piano transcription with Transformers.&quot; </a><a href="https://archives.ismir.net/ismir2021/paper/000030.pdf"><em>arXiv preprint arXiv:2107.09142</em></a><a href="https://archives.ismir.net/ismir2021/paper/000030.pdf"> (2021).</a></li></ul><ul id="0af7d117-91b2-45d5-8119-c8575b15cc8a" class="bulleted-list"><li style="list-style-type:circle"><a href="https://arxiv.org/abs/2111.03017">Gardner, Josh, et al. &quot;Mt3: Multi-task multitrack music transcription.&quot; </a><a href="https://arxiv.org/abs/2111.03017"><em>arXiv preprint arXiv:2111.03017</em></a><a href="https://arxiv.org/abs/2111.03017"> (2021).</a></li></ul><ul id="42f09b07-d873-4c3a-b5b7-058bd9c23e8b" class="bulleted-list"><li style="list-style-type:circle"><a href="https://magenta.tensorflow.org/transcription-with-transformers">https://magenta.tensorflow.org/transcription-with-transformers</a> (the original blog)</li></ul></li></ul><ul id="1adac9b6-128f-4a51-a2c1-82a641bebf07" class="bulleted-list"><li style="list-style-type:disc">Source Code:<ul id="9dd10074-45c7-4d2b-bc2b-45fd2f85965f" class="bulleted-list"><li style="list-style-type:circle"><a href="https://github.com/magenta/mt3">https://github.com/magenta/mt3</a></li></ul><ul id="783d92d9-a958-4362-9530-a7ea65e7c360" class="bulleted-list"><li style="list-style-type:circle"><a href="https://github.com/google-research/text-to-text-transfer-transformer/">https://github.com/google-research/text-to-text-transfer-transformer/</a> (T5)</li></ul></li></ul></li></ol><ol type="1" id="04a45877-e8d1-4f9e-99e3-929e58500d6e" class="numbered-list" start="2"><li><strong>Auxiliary Papers/Blogs</strong><ol type="a" id="7472e0d1-0cd8-4d8b-9f55-4a64b1e2ffc8" class="numbered-list" start="1"><li><a href="https://towardsdatascience.com/3-reasons-why-music-is-ideal-for-learning-and-teaching-data-science-59d892913608">https://towardsdatascience.com/3-reasons-why-music-is-ideal-for-learning-and-teaching-data-science-59d892913608</a> (Max Hilsdorf)</li></ol><ol type="a" id="04520ffb-dd16-4a03-95c6-51068e9ebd88" class="numbered-list" start="2"><li><a href="https://arxiv.org/abs/1706.03762">Vaswani, Ashish, et al. &quot;Attention is all you need.&quot; </a><a href="https://arxiv.org/abs/1706.03762"><em>Advances in neural information processing systems</em></a><a href="https://arxiv.org/abs/1706.03762"> 30 (2017).</a></li></ol><ol type="a" id="d5fdfca2-4677-481c-9767-4af77dec5254" class="numbered-list" start="3"><li><a href="https://arxiv.org/abs/2104.01778">Gong, Yuan, Yu-An Chung, and James Glass. &quot;Ast: Audio spectrogram transformer.&quot; </a><a href="https://arxiv.org/abs/2104.01778"><em>arXiv preprint arXiv:2104.01778</em></a><a href="https://arxiv.org/abs/2104.01778"> (2021).</a></li></ol><ol type="a" id="9fb2a005-2db0-4e7c-bc21-24983cd173b6" class="numbered-list" start="4"><li><a href="https://isl.anthropomatik.kit.edu/pdf/Awiszus2019.pdf">M. Awiszus, “Automatic music transcription using sequence to sequence learning,” Master’s thesis, Karlsruhe Institute of Technology, 2019. </a></li></ol><ol type="a" id="ef0f1171-ab59-4630-836e-dabd49a42aac" class="numbered-list" start="5"><li><a href="https://magenta.tensorflow.org/onsets-frames">https://magenta.tensorflow.org/onsets-frames</a></li></ol><ol type="a" id="4d422e0c-28f3-4d06-a356-0eeb7d7ad8da" class="numbered-list" start="6"><li><a href="https://www.toptal.com/algorithms/shazam-it-music-processing-fingerprinting-and-recognition">https://www.toptal.com/algorithms/shazam-it-music-processing-fingerprinting-and-recognition</a></li></ol><ol type="a" id="6f5e1158-1ff7-4e27-8578-788b36f0e4c8" class="numbered-list" start="7"><li><a href="https://www.makeuseof.com/how-does-shazam-work/">https://www.makeuseof.com/how-does-shazam-work/</a></li></ol><p id="5cfb25df-69c2-42fc-b0fd-6b59a9dc6e29" class="">
+</p></li></ol><p id="b4957d30-d80e-45fe-9bfe-e8f19f483250" class="">
+</p></div></article></body></html>
