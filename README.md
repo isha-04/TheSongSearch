@@ -23,3 +23,5 @@ Taking inspiration from Shazam, we hope to create a project that would be replic
 For further details please reach out to:
 1. Isha Hemant Arora (arora.isha@northeastern.edu)
 2. Praveen Kumar Sridhar (sridhar.p@northeastern.edu)
+
+Project Report: https://expo.baulab.info/2022-Fall/PraveenKumarSridhar/index.html
